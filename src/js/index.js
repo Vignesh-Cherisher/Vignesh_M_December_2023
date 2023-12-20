@@ -8,12 +8,14 @@ let machineState = false
 htmlComponents.powerButton.addEventListener('click', function () {
   if (htmlComponents.powerButton.innerHTML === 'Off') {
     htmlComponents.powerButton.innerHTML = 'On'
+    htmlComponents.modeOptionCheckbox.disabled = false
     htmlComponents.powerButton.classList.add('power-button-on')
     setInitialStorageValue()
     machineState = true
   } else {
     htmlComponents.powerButton.innerHTML = 'Off'
     htmlComponents.modeOptionCheckbox.checked = false
+    htmlComponents.modeOptionCheckbox.disabled = true
     htmlComponents.powerButton.classList.remove('power-button-on')
     machineState = false
   }
@@ -76,7 +78,31 @@ htmlComponents.modeOptionCheckbox.addEventListener('click', function () {
 
 function runSprinklers() {
   updateOrderArray()
-  // turnIndicators()
+  let index = 1
+  let timeRun = 0
+  let indexNumber = findNextIndicator(index)
+  turnOnIndicator(indexNumber)
+  const sprinklerIntervalId = setInterval(() => {
+    if (htmlComponents.modeOptionCheckbox.checked === false || machineState === false) {
+      turnOffAllIndicators()
+      turnOnIndicator(0)
+      clearInterval(sprinklerIntervalId)
+    } else {
+      timeRun += 1
+      if (timeArray[indexNumber] === timeRun) {
+        turnOffIndicator(indexNumber)
+        timeRun = 0
+        index += 1
+        if (index === 5) {
+          index = 1
+        }
+        indexNumber = findNextIndicator(index)
+        turnOnIndicator(indexNumber)
+      } else {
+        turnOnIndicator(indexNumber)
+      }
+    }
+  },1000)
 }
 
 function updateOrderArray() {
@@ -88,24 +114,28 @@ function updateOrderArray() {
   }
 }
 
-function turnIndicators() {
-  for (let i = 1; i < 5; i++) {
-    if (machineState === false) {
-      break
+function turnOnIndicator(zoneTime) {
+  htmlComponents.indicatorButtons.forEach(element => {
+    if (element.id === zoneTime.toString()) {
+      element.classList.add('zone-indicator-on')
     }
-    const indexNumber = findNextIndicator(i)
-    htmlComponents.indicatorButtons.forEach(element => {
-      if (element.id === indexNumber.toString()) {
-        element.classList.add('zone-indicator-on')
-      }
-    })
-    setTimeout(() => {
-      console.log('waiting')
-    }, timeArray[indexNumber] * 1000)
-    if (i === 4) {
-      i = 1
+  })
+}
+
+function turnOffIndicator(zoneTime) {
+  htmlComponents.indicatorButtons.forEach(element => {
+    if (element.id === zoneTime.toString()) {
+      element.classList.remove('zone-indicator-on')
     }
-  }
+  })
+}
+
+function turnOffAllIndicators() {
+  htmlComponents.indicatorButtons.forEach(element => {
+    if (element.classList.contains('zone-indicator-on')) {
+      element.classList.remove('zone-indicator-on')
+    }
+  })
 }
 
 function findNextIndicator(targetNumber) {

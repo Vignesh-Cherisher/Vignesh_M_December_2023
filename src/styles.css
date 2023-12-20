@@ -263,7 +263,7 @@ html, body {
 }
 
 .zone-indicator-on {
-  background-color: var(--primary-component-color);
+  background-color: var(--secondary-component-color);
 }
 
 .power-button-on {
