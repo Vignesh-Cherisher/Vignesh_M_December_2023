@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sprinkler System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,900;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="application-container">
+    <div class="main-application-container">
+      <div class="selector-container container-elements">
+          <p class="selector-title title-text">
+            Selector
+          </p>
+          <div class="selector-options">
+            <div class="mode-options">
+              <p class="mode-title">Run Mode?</p>
+              <input type="checkbox" name="mode-option-checkbox" id="mode-option-checkbox">
+            </div>
+            <div class="selector-pane">
+              <div>
+                <div></div>
+                <input type="radio" class="zone-selector-checkboxes last-entry" name="zone-selector-radio" id="front-selector" checked>
+                <label for="front-selector">Front</label>
+              </div>
+              <div>
+                <label for="back-selector">Back</label>
+                <input type="radio" class="zone-selector-checkboxes" name="zone-selector-radio" id="back-selector">
+                <div></div>
+              </div>
+              <div>
+                <div></div>
+                <input type="radio" class="zone-selector-checkboxes" name="zone-selector-radio" id="right-selector">
+                <label for="right-selector">Right</label>
+              </div>
+              <div>
+                <label for="left-selector">Left</label>
+                <input type="radio" class="zone-selector-checkboxes" name="zone-selector-radio" id="left-selector">
+                <div></div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="zone-configuration-container container-elements">
+        <p class="zone-configuration-title title-text">Zone Configuration</p>
+        <div class="zone-configuration-options">
+          <div class="zone-order-settings-container">
+            <label for="zone-order-field">Zone Order</label>
+            <div class="zone-order-input">
+              <input type="range" list="zone-order-field-list"  name="zone-order-settings" id="zone-order-field" min="1" max="4">
+              <datalist id="zone-order-field-list">
+                <option value="1" label="1"></option>
+                <option value="2" label="2"></option>
+                <option value="3" label="3"></option>
+                <option value="4" label="4"></option>
+              </datalist>
+            </div>
+            <div class="zone-order-values">
+              <p class="datalist-values">1</p>
+              <p class="datalist-values">2</p>
+              <p class="datalist-values">3</p>
+              <p class="datalist-values">4</p>
+            </div>
+          </div>
+          <div class="zone-time-container">
+            <label for="zone-time-field">Zone Time (sec)</label>
+            <input type="number" name="zone-time-field-number" id="zone-time-field" min="1" max="15" value="1">
+          </div>
+        </div>
+      </div>
+      <div class="zone-indicators-container container-elements">
+        <p class="zone-indicator-title title-text">Zone Indicators</p>
+        <div class="zone-indicator-buttons">
+          <div class="front-zone-indicator indicator-buttons">FRONT</div>
+          <div class="left-zone-indicator indicator-buttons">LEFT</div>
+          <div class="right-zone-indicator indicator-buttons">RIGHT</div>
+          <div class="back-zone-indicator indicator-buttons">BACK</div>
+        </div>
+      </div>
+      <div class="timer-container container-elements">
+        <p class="timer-title title-text">Timer</p>
+        <div id="time-display"><span id="minutes">01</span>:<span id="seconds">00</span></div>
+      </div>
+    </div>
+    <div class="power-and-reset-container">
+      <div class="empty-container"></div>
+      <div class="power-container">
+        <button id="power-btn" class="btn btn-primary">Off</button>
+        <p class="power-button-label">Power</p>
+      </div>
+      <div class="reset-container">
+        <button id="reset-button">
+          <img src="../Assets/icons8-reset-50.png" alt="reset-icon">
+          <p class="reset-label">Reset</p>
+        </button>
+      </div>
+    </div>
+  </div>
+  <script src="./js/index.js" type="module"></script>
+</body>
+</html>

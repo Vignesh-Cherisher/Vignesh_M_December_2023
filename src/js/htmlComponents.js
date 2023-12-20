@@ -1,0 +1,5 @@
+export const modeOptionCheckbox = document.querySelector('#mode-option-checkbox')
+export const zoneSelectorCheckboxes = document.querySelectorAll('.zone-selector-checkboxes')
+export const zoneOrderField = document.querySelector('#zone-order-field')
+export const zoneTimeField = document.querySelector ('#zone-time-field')
+export const powerButton = document.querySelector('#power-btn')
