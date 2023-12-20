@@ -1,21 +1,43 @@
 import * as htmlComponents from './htmlComponents.js'
 
+const observer = new MutationObserver(restartSprinkler)
 let globalStorage = {}
 let orderArray = []
 let timeArray = []
 let machineState = false
+let sprinklerIntervalId
+let timeInterval
+
+disableElementsOnRunMode()
+
+function restartSprinkler() {
+  if (htmlComponents.minutes.innerHTML !== '00') {
+    clearInterval(sprinklerIntervalId)
+    clearInterval(timeInterval)
+    turnOffAllIndicators()
+    runSprinklers()
+    setTimeout(() => {
+      startTimer()
+    },1000)
+  }
+}
 
 htmlComponents.powerButton.addEventListener('click', function () {
   if (htmlComponents.powerButton.innerHTML === 'Off') {
     htmlComponents.powerButton.innerHTML = 'On'
     htmlComponents.modeOptionCheckbox.disabled = false
     htmlComponents.powerButton.classList.add('power-button-on')
+    enableElementsOnSetupMode()
     setInitialStorageValue()
+    observer.observe(htmlComponents.minutes,observerOptions)
     machineState = true
   } else {
     htmlComponents.powerButton.innerHTML = 'Off'
     htmlComponents.modeOptionCheckbox.checked = false
     htmlComponents.modeOptionCheckbox.disabled = true
+    disableElementsOnRunMode()
+    resetTimer()
+    observer.disconnect()
     htmlComponents.powerButton.classList.remove('power-button-on')
     machineState = false
   }
@@ -28,7 +50,6 @@ function setInitialStorageValue() {
     orderArray.push(i)
     globalStorage[i - 1][1] = 1
     timeArray.push(1)
-
   }
 }
 
@@ -37,8 +58,14 @@ htmlComponents.zoneSelectorCheckboxes.forEach((element, index) => {
     const elementIndex = findLastElementEntry()
     updateElementValuesToStorage(elementIndex)
     element.classList.add('last-entry')
+    retrieveElementValueFromStorage(index)
   })
 })
+
+function retrieveElementValueFromStorage(entryNumber) {
+  htmlComponents.zoneOrderField.value = globalStorage[entryNumber][0]
+  htmlComponents.zoneTimeField.value = globalStorage[entryNumber][1]
+}
 
 function findLastElementEntry() {
   let result
@@ -60,21 +87,50 @@ function updateElementValuesToStorage(entryNumber) {
 
 htmlComponents.modeOptionCheckbox.addEventListener('click', function () {
   if (htmlComponents.modeOptionCheckbox.checked === true) {
-    htmlComponents.zoneSelectorCheckboxes.forEach((element) => {
-      element.disabled = true
-    })
-    htmlComponents.zoneOrderField.disabled = true
-    htmlComponents.zoneTimeField.disabled = true
-    runSprinklers()
+    let validation = validateZoneOrder()
+    if (validation === true) {
+      startTimer()
+      disableElementsOnRunMode()
+      runSprinklers()
+    } else {
+      htmlComponents.modeOptionCheckbox.checked = false
+      let indexNumber = findNextIndicator(1)
+      htmlComponents.zoneSelectorCheckboxes[indexNumber].checked = true
+      retrieveElementValueFromStorage(indexNumber)
+    }
   } else {
-    htmlComponents.zoneSelectorCheckboxes.forEach((element) => {
-      element.disabled = false
-    })
-    htmlComponents.zoneOrderField.disabled = false
-    htmlComponents.zoneTimeField.disabled = false
-    stopSprinklers()
+    resetTimer()
+    enableElementsOnSetupMode()
   }
 })
+
+function validateZoneOrder() {
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 4; j++) {
+      if (globalStorage[i][0] === globalStorage[j][0] && i !== j) {
+        alert('Warning! The same order is set for the zones.')
+        return false
+      }
+    }
+  }
+  return true
+}
+
+function disableElementsOnRunMode() {
+  htmlComponents.zoneSelectorCheckboxes.forEach((element) => {
+    element.disabled = true
+  })
+  htmlComponents.zoneOrderField.disabled = true
+  htmlComponents.zoneTimeField.disabled = true
+}
+
+function enableElementsOnSetupMode() {
+  htmlComponents.zoneSelectorCheckboxes.forEach((element) => {
+    element.disabled = false
+  })
+  htmlComponents.zoneOrderField.disabled = false
+  htmlComponents.zoneTimeField.disabled = false
+}
 
 function runSprinklers() {
   updateOrderArray()
@@ -82,10 +138,9 @@ function runSprinklers() {
   let timeRun = 0
   let indexNumber = findNextIndicator(index)
   turnOnIndicator(indexNumber)
-  const sprinklerIntervalId = setInterval(() => {
-    if (htmlComponents.modeOptionCheckbox.checked === false || machineState === false) {
+  sprinklerIntervalId = setInterval(() => {
+    if (htmlComponents.modeOptionCheckbox.checked === false || machineState === false || index === 5) {
       turnOffAllIndicators()
-      turnOnIndicator(0)
       clearInterval(sprinklerIntervalId)
     } else {
       timeRun += 1
@@ -93,9 +148,6 @@ function runSprinklers() {
         turnOffIndicator(indexNumber)
         timeRun = 0
         index += 1
-        if (index === 5) {
-          index = 1
-        }
         indexNumber = findNextIndicator(index)
         turnOnIndicator(indexNumber)
       } else {
@@ -147,38 +199,50 @@ function findNextIndicator(targetNumber) {
 }
 
 function startTimer() {
- 
-}
-
-function incrementSeconds() {
-  const secondValue = htmlComponents.seconds.innerHTML
-  const i = setInterval(() => {
-    if (machineState === false) {
-      clearInterval(i)
-    }
-    secondValue = ++parseInt(secondValue)
-    if (secondValue < 60) {
-      timeValueLesserThanTen(secondValue)
+  incrementSeconds()
+  timeInterval = setInterval(() => {
+    if (machineState === false || htmlComponents.modeOptionCheckbox.checked === false) {
+      clearInterval(timeInterval)
     } else {
-      addMinute()
-      secondValue = '00'
+      incrementSeconds()
     }
-    htmlComponents.seconds.innerHTML = secondValue 
   },1000)
 }
 
-function addMinute() {
-
+function resetTimer() {
+  htmlComponents.seconds.innerHTML = '00'
+  htmlComponents.minutes.innerHTML = '00'
 }
 
-function timeValueLesserThanTen(secondsValue) {
-  if (secondsValue <= 10) {
+function incrementSeconds() {
+  let secondValue = htmlComponents.seconds.innerHTML
+  secondValue = parseInt(secondValue)
+  secondValue+=1
+  if (secondValue < 60) {
+    secondValue = zeroPad(secondValue)
+  } else {
+    addMinute()
+    secondValue = '00'
+  }
+  htmlComponents.seconds.innerHTML = secondValue 
+}
+
+function addMinute() {
+  let minuteValue = htmlComponents.minutes.innerHTML
+  minuteValue = parseInt(minuteValue)
+  minuteValue += 1
+  htmlComponents.minutes.innerHTML = zeroPad(minuteValue)
+}
+
+function zeroPad(secondsValue) {
+  if (secondsValue < 10) {
     return '0' + secondsValue
   } else {
     return secondsValue.toString()
   }
 }
 
-function stopSprinklers() {
-  
-}
+const observerOptions = {
+  childList: true,
+  subtree: true,
+};
