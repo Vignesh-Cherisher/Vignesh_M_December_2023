@@ -7,13 +7,13 @@ let machineState = false
 
 htmlComponents.powerButton.addEventListener('click', function () {
   if (htmlComponents.powerButton.innerHTML === 'Off') {
-    htmlComponents.modeOptionCheckbox.checked = false
     htmlComponents.powerButton.innerHTML = 'On'
     htmlComponents.powerButton.classList.add('power-button-on')
     setInitialStorageValue()
     machineState = true
   } else {
     htmlComponents.powerButton.innerHTML = 'Off'
+    htmlComponents.modeOptionCheckbox.checked = false
     htmlComponents.powerButton.classList.remove('power-button-on')
     machineState = false
   }
@@ -76,7 +76,7 @@ htmlComponents.modeOptionCheckbox.addEventListener('click', function () {
 
 function runSprinklers() {
   updateOrderArray()
-  turnIndicators()
+  // turnIndicators()
 }
 
 function updateOrderArray() {
@@ -147,4 +147,8 @@ function timeValueLesserThanTen(secondsValue) {
   } else {
     return secondsValue.toString()
   }
+}
+
+function stopSprinklers() {
+  
 }

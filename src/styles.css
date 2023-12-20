@@ -236,7 +236,7 @@ html, body {
   text-align: center;
 }
 
-#power-btn {
+.power-btn {
   border: none;
   height: 40px;
   width: 80px;
