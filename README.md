@@ -59,9 +59,8 @@ To run tests, run the following command
 
 ## Screenshots
 
-![Fig.1.1 - Top Section Sample]('./)
-![Fig.1.2 - Middle Section Sample]('./)
-![Fig.1.3 - Bottom Section Sample]('./)
+![Fig.1.1 - Add Update Section Sample]('./Assets/addUpdateScreenshot.png')
+![Fig.1.2 - Search Section Sample]('./Assets/searchScreenshot.png')
 
 
 
