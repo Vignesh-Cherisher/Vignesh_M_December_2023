@@ -1,30 +1,66 @@
-import { details,inputSearch,condition,searchEntries } from "./htmlComponents.js"
+import { details, inputSearch, condition, searchEntries } from "./htmlComponents.js"
+import { loadInitialRecords } from "./apiFunctions.js"
+const sortedArray = []
+const unSortedArray = []
+
+async function getDisplayData() {
+  const displayData = await loadInitialRecords()
+  const displayDataArray = []
+  for (const record in displayData) {
+    displayDataArray.push(displayData[record])
+  }
+  return displayDataArray
+}
+
 function sortHandler(searchFieldValues) {
   switch (searchFieldValues[0]) {
-    case 'card-number':
-      filterOnNumber(searchFieldValues)
+    case 'cardNumber':
+      loadCardNumberData()
       break
-    case 'card-holder-first-name':
-      filterOnFirstName(searchFieldValues)
+    case 'cardHolderFirstName':
+      loadCardFirstNameData()
       break
-    case 'card-holder-last-name':
-      filterOnLastName(searchFieldValues)
+    case 'cardHolderLastName':
+      loadCardLastNameData()
       break
-    case 'card-expiry':
-      filterOnExpiry(searchFieldValues)
+    case 'cardExpiry':
+      loadCardExpiryData()
       break
   }
-}
-
-function filterOnNumber(searchFieldValues) {
   switch (searchFieldValues[1]) {
     case 'equals':
-      filterOnNumberEquals(searchFieldValues)
+      filterOnValueEquals(searchFieldValues)
       break
     case 'not equals':
+      filterOnValueNotEquals(searchFieldValues)
+      break
+    case 'contains':
+      filterOnValueContains(searchFieldValues)
+      break
+    case 'begins with':
+      filterOnValueBegins(searchFieldValues)
+      break
+    case 'ends with':
+      filterOnValueEnds(searchFieldValues)
+      break
+    case 'in':
+      filterOnDateIn(searchFieldValues)
+      break
+    case 'on':
+      filterOnDateOn(searchFieldValues)
+      break
+    case 'before':
+      filterOnDateBefore(searchFieldValues)
+      break
+    case 'after':
+      filterOnDateAfter(searchFieldValues)
+      break
+    case 'within':
+      filterOnDateWithin(searchFieldValues)
+      break
   }
 }
 
-function filterOnNumberEquals() {
+function filterOnValueEquals(inputFieldValue) {
 
 }

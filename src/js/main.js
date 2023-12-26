@@ -59,9 +59,9 @@ function appendToDisplayData(entryData) {
     const htmlMarkup = `<div class="data-display-column">
               <p class="display-data">${serialNumber}</p>
               <p class="display-data card-number-field">${entryData.cardNumber}</p>
-              <p class="display-data">${entryData.holderFirstName}</p>
-              <p class="display-data">${entryData.holderLastName}</p>
-              <p class="display-data">${entryData.expiryDate}</p>
+              <p class="display-data">${entryData.cardHolderFirstName}</p>
+              <p class="display-data">${entryData.cardHolderLastName}</p>
+              <p class="display-data">${entryData.cardExpiry}</p>
             </div>`
     htmlComponents.dataDisplayGrid.insertAdjacentHTML('beforeend', htmlMarkup)
   }
@@ -89,14 +89,14 @@ function updateDisplayColumn(entryData, iterationCount) {
 function updateConditionOptions(inputValue) {
   let conditionValues
   switch (inputValue) {
-    case 'card-number':
+    case 'cardNumber':
       conditionValues = ['equals', 'not equals', 'contains','number']
       break
-    case 'card-holder-first-name':
-    case 'card-holder-last-name':
+    case 'cardHolderFirstName':
+    case 'cardHolderLastName':
       conditionValues = ['equals', 'not equals', 'contains', 'begins with', 'ends with', 'text']
       break
-    case 'card-expiry':
+    case 'cardExpiry':
       conditionValues = ['in', 'on', 'before', 'after', 'within', 'month']
       break
   }
@@ -121,7 +121,7 @@ function updateInputOptions(inputValue) {
     htmlComponents.inputSearch.setAttribute('type', 'number')
     htmlComponents.inputSearch.setAttribute('min', '1985')
     htmlComponents.inputSearch.setAttribute('max', '3000')
-  } else if(htmlComponents.details.value === 'card-expiry'){
+  } else if(htmlComponents.details.value === 'cardExpiry'){
     htmlComponents.inputSearch.setAttribute('type', 'month')
   }
   if (inputValue === 'within') {

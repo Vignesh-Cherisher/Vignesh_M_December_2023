@@ -40,9 +40,9 @@ async function postAddUpdateData(inputFieldValues) {
 
   const fetchBody = {
     cardNumber: inputFieldValues[0],
-    holderFirstName: inputFieldValues[1],
-    holderLastName: inputFieldValues[2],
-    expiryDate: inputFieldValues[3]
+    cardHolderFirstName: inputFieldValues[1],
+    cardHolderLastName: inputFieldValues[2],
+    cardExpiry: inputFieldValues[3]
   }
 
   const requestOptions = {
