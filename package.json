@@ -1,0 +1,20 @@
+{
+  "name": "creditcard",
+  "version": "1.0.0",
+  "description": "The website is a node-based Credit Card Management System Website that provides the user to add their Credit card Data, update the Data and Search through the credit cards when necessary. The website might stand as an example for web development enthusiasts who wish to get inspiring ideas for a simple one-page web app.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --findRelatedTests tests/unit/",
+    "start": "node express-server.cjs",
+    "auto-start": "nodemon express-server.cjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.2"
+  }
+}
