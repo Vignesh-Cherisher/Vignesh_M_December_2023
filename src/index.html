@@ -24,22 +24,22 @@
           <p class="header-elements active">Add/Update</p>
           <p class="header-elements">Search</p>
         </div>
-        <div class="add-update-container active">
-          <fieldset>
+        <div class="add-update-container data-add-search-container active">
+          <fieldset id="add-update-form">
             <label for="card-number">Card Number</label>
-            <input type="number" name="card-number-input" id="card-number" class="add-update-entries" placeholder="00000000">
+            <input type="number" name="card-number-input" id="card-number" min="1" max="99999999" class="add-update-entries" placeholder="00000000" required>
             <label for="name-input">Name</label>
-            <input type="text" name="name-input-field" id="name-input" class="add-update-entries">
+            <input type="text" name="name-input-field" id="name-input" class="add-update-entries" required>
             <label for="expiry-date">Valid Up to</label>
-            <input type="month" name="expiry-input-field" id="expiry-date" class="add-update-entries">
+            <input type="month" name="expiry-input-field" id="expiry-date" class="add-update-entries" required>
             <br>
-            <button type="submit" class="add-update-submit" id="add-update-button">Add/Update</button>
+            <button type="submit" name="add-update-form" class="add-update-submit" id="add-update-button">Add/Update</button>
           </fieldset>
         </div>
-        <div class="search-container">
+        <div class="search-container data-add-search-container">
           <fieldset>
             <label for="details">Details</label>
-            <select name="details-input" id="details">
+            <select name="details-input" id="details" required>
               <option value="" selected disabled hidden>Category</option>
               <option value="card-number">Card Number</option>
               <option value="card-holder-first-name">Card Holder First Name</option>
@@ -47,11 +47,11 @@
               <option value="card-expiry">Card Expiry</option>
             </select>
             <label for="condition">Condition</label>
-            <select name="condition-input" id="condition">
+            <select name="condition-input" id="condition" required>
               <option value="" selected disabled hidden>Condition</option>
             </select>
             <label for="input-search">Input</label>
-            <input type="month" name="input-search-field" id="input-search">
+            <input type="month" name="input-search-field" id="input-search" required>
             <br>
             <button type="submit" class="search-submit" id="search-button">Search</button>
           </fieldset>
