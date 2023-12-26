@@ -39,7 +39,7 @@
         <div class="search-container data-add-search-container">
           <fieldset>
             <label for="details">Details</label>
-            <select name="details-input" id="details" required>
+            <select name="details-input" id="details" class="search-entries" required>
               <option value="" selected disabled hidden>Category</option>
               <option value="card-number">Card Number</option>
               <option value="card-holder-first-name">Card Holder First Name</option>
@@ -47,11 +47,13 @@
               <option value="card-expiry">Card Expiry</option>
             </select>
             <label for="condition">Condition</label>
-            <select name="condition-input" id="condition" required>
+            <select name="condition-input" id="condition" class="search-entries" required>
               <option value="" selected disabled hidden>Condition</option>
             </select>
             <label for="input-search">Input</label>
-            <input type="month" name="input-search-field" id="input-search" required>
+            <input type="month" name="input-search-field" id="fromdate-input-search" class="search-entries" required>
+            <span class="input-search-within-date" hidden>To</span>
+             <input type="month" name="input-search-field-within" id="tilldate-input-search" class="input-search-within-date search-entries" required hidden>
             <br>
             <button type="submit" class="search-submit" id="search-button">Search</button>
           </fieldset>

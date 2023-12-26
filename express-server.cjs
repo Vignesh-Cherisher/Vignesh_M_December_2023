@@ -8,9 +8,16 @@ app.use(express.static(path.join(__dirname, '/src')))
 app.use(express.static(__dirname))
 app.use(express.json())
 
-// app.get('/', (req, res) => {
-
-// })
+app.get('/load-initial-data', (req, res) => {
+  let parsedData = {}
+  const fileData = readFileSync(defaultPath, 'utf-8')
+  try {
+    parsedData = JSON.parse(fileData)
+  } catch (err) {
+    parsedData = {}
+  } 
+  res.json(parsedData)
+})
 
 app.post('/add-update-entry', (req, res) => {
   const postData = req.body

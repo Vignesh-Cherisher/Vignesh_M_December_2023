@@ -1,5 +1,11 @@
 import { padZeros, getFirstName, getLastName } from "./formFunctions.js"
 
+export async function loadInitialRecords () {
+  const fetchData = await fetch('/load-initial-data')
+    .then((response) => { return response.json() })
+  return fetchData
+}
+
 export function addUpdateHandler(inputs) {
   const addUpdateEntriesValues = []
   let postData = true

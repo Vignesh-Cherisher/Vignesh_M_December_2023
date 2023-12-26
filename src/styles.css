@@ -86,7 +86,7 @@ main {
 
 .add-update-container, .search-container {
   position: relative;
-  height: clamp(350px, 80%, 700px);
+  height: clamp(420px, 80%, 700px);
   opacity: 0;
   z-index: 1;
   border: solid 2px #000;
@@ -98,11 +98,15 @@ main {
   background-color: #fdce99;
 }
 
+.bg-color-blue {
+  background-color: #53baff;
+}
+
 fieldset {
   padding: 20px 10px 0 10px;
   font-size: 0.8rem;
   display: grid;
-  grid-template: repeat(7,1fr) / 1fr;
+  grid-template: repeat(9,2rem) / 1fr;
   min-height: 250px;
   border: none;
 }
