@@ -24,17 +24,14 @@ app.post('/add-update-entry', (req, res) => {
     parsedData[postData.cardNumber] = postData
     writeFile(defaultPath, JSON.stringify(parsedData, null, 2), (error) => {
       if (error) {
-        console.log('An error has occurred ', error)
         return
       }
-      console.log('Data written successfully to disk')
     })
   }
   res.json(postData)
 })
 
 const port = 5002
-app.listen(port, function (err) {
-  if (err) console.log(err)
+app.listen(port, function () {
   console.log(`Server listening on PORT http://localhost:${port}`)
 })

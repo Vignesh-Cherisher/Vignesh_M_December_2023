@@ -48,6 +48,5 @@ async function postAddUpdateData(inputFieldValues) {
 
   const fetchData = await fetch('/add-update-entry', requestOptions)
     .then((response) => { return response.json() })
-    .catch(error => console.log('error', error))
   return (fetchData)
 }

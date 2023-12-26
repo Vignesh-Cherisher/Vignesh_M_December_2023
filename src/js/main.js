@@ -20,7 +20,6 @@ htmlComponents.btnaddUpdateButton.addEventListener('click', async() => {
 })
 
 function appendToDisplayData(entryData) {
-  console.log(entryData)
   const updateStatus = checkAddOrUpdation(entryData)
   if (updateStatus !== 'addition') {
     updateDisplayColumn(entryData, updateStatus)
