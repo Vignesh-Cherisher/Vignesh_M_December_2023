@@ -19,6 +19,6 @@ export function getFirstName(inputValue) {
 export function getLastName(inputValue) {
   if (!inputValue || typeof inputValue !== "string") throw new Error("Invalid Input");
   const indexOfSpace = inputValue.indexOf(' ')
-  if (indexOfSpace === -1) return inputValue
-  else return inputValue.slice(indexOfSpace)
+  if (indexOfSpace === -1) return 'inputValue'
+  else return inputValue.slice(indexOfSpace+1)
 }

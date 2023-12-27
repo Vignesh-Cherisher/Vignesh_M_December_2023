@@ -49,7 +49,35 @@ export function sortHandler(searchFieldValues) {
 async function filterOnValueEquals(inputFieldValue) {
   let detailValue = details.value
   let displayDataArray = await getDisplayData()
-  console.log(displayDataArray)
   displayDataArray = displayDataArray.filter((item) => item[detailValue] === inputFieldValue[2])
+  updateDisplayData(displayDataArray)
+}
+
+async function filterOnValueNotEquals(inputFieldValue) {
+  let detailValue = details.value
+  let displayDataArray = await getDisplayData()
+  displayDataArray = displayDataArray.filter((item) => item[detailValue] !== inputFieldValue[2])
+  updateDisplayData(displayDataArray)
+}
+
+async function filterOnValueContains(inputFieldValue) {
+  let detailValue = details.value
+  let displayDataArray = await getDisplayData()
+  displayDataArray = displayDataArray.filter((item) => item[detailValue].indexOf(inputFieldValue[2]) >= 0)
+  updateDisplayData(displayDataArray)
+}
+
+async function filterOnValueBegins(inputFieldValue) {
+  let detailValue = details.value
+  let displayDataArray = await getDisplayData()
+  displayDataArray = displayDataArray.filter((item) => item[detailValue].indexOf(inputFieldValue[2]) === 0)
+  updateDisplayData(displayDataArray)
+}
+
+async function filterOnValueEnds(inputFieldValue) {
+  let detailValue = details.value
+  let displayDataArray = await getDisplayData()
+  console.log('entered')
+  displayDataArray = displayDataArray.filter((item) => item[detailValue].endsWith(inputFieldValue[2]) === true)
   updateDisplayData(displayDataArray)
 }

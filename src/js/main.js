@@ -154,6 +154,20 @@ function searchHandler(inputFields) {
   }
 }
 
-export function updateDisplayData() {
-  
+export function updateDisplayData(filteredArray) {
+  let serialNumber = htmlComponents.getDisplayColumns().length
+  for (let i = 1; i < serialNumber; i++) {
+    htmlComponents.dataDisplayGrid.removeChild(htmlComponents.dataDisplayGrid.lastChild)
+  }
+  serialNumber = htmlComponents.getDisplayColumns().length
+  for (const record of filteredArray) {
+    const htmlMarkup = `<div class="data-display-column">
+            <p class="display-data">${serialNumber++}</p>
+            <p class="display-data card-number-field">${record.cardNumber}</p>
+            <p class="display-data">${record.cardHolderFirstName}</p>
+            <p class="display-data">${record.cardHolderLastName}</p>
+            <p class="display-data">${record.cardExpiry}</p>
+          </div>`
+    htmlComponents.dataDisplayGrid.insertAdjacentHTML('beforeend', htmlMarkup) 
+  }
 }
