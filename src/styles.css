@@ -1,0 +1,272 @@
+:root {
+  --primary-bg-color : #E6F1DA;
+  --primary-component-color: #CCE2B7;
+  --secondary-component-color: #63843C;
+  --button-and-element-color: #425928;
+  --light-font-color: white;
+  --dark-font-color: black;
+}
+
+* {
+  margin: 0;
+  overscroll-behavior: none;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  font-family: Roboto, sans-serif;
+  font-size: 18px;
+}
+
+.application-container {
+  background-color: var(--primary-bg-color);
+  height: 100%;
+  width: 100%;
+}
+
+.main-application-container {
+  padding: 20px;
+  height: 80%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 2fr 3fr;
+  row-gap: 40px;
+  column-gap: 20px;
+  align-items: center;
+  justify-items: center;
+}
+
+.container-elements {
+  border: solid 2px black;
+  height: 100%;
+  background-color: var(--primary-component-color);
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.selector-container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-text {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.selector-options {
+  display: flex;
+  width: 90%;
+  padding: 0 10px;
+}
+
+.mode-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100px;
+  width: 40%;
+}
+
+.mode-title {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+#mode-option-checkbox {
+  height: 30px;
+  width: 40px;
+}
+
+.selector-pane {
+  color: var(--light-font-color);
+  background-color: var(--secondary-component-color);
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.selector-pane > div {
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.selector-pane > div > * {
+  height: 33%;
+}
+
+.zone-configuration-title {
+  text-align: center;
+  height: 20%;
+  width: 100%;
+}
+
+.zone-configuration-options {
+  display: flex;
+  font-weight: 700;
+  height: 70%;
+  width: 100%;
+}
+
+.zone-order-settings-container {
+  padding: 10px;
+  height: 50%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.zone-order-input {
+  width: 130px;
+}
+
+.zone-order-values {
+  display: flex;
+  width: 130px;
+  justify-content: space-between;
+}
+
+.zone-time-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+}
+
+.zone-time-container > label {
+  margin-bottom: 10px;
+}
+
+.zone-time-container > input {
+  width: 90px;
+  height: 35px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.zone-indicators-container {
+  padding: 0 20px;
+}
+
+.zone-indicator-buttons {
+  font-weight: 700;
+  height: 80%;
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+}
+
+.indicator-buttons {
+  background-color: var(--primary-bg-color);
+  border: solid 1px black;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.front-zone-indicator {
+  grid-area: 1 / 4 / 3/ 6;
+}
+
+.left-zone-indicator {
+  grid-area: 4 / 1 / 6/ 3;
+}
+
+.right-zone-indicator {
+  grid-area: -4 / -1 / -6 / -3;
+}
+
+.back-zone-indicator {
+  grid-area: -1 / -4 / -3 / -6;
+}
+
+.timer-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer-title {
+  position: absolute;
+  top: 0;
+}
+
+#time-display {
+  font-size: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 30%;
+  width: 80%;
+  background-color: var(--secondary-component-color);
+  color: var(--light-font-color);
+}
+
+.power-and-reset-container {
+  padding: 20px;
+  height: 20%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.power-container {
+  text-align: center;
+}
+
+.power-btn {
+  border: none;
+  height: 40px;
+  width: 80px;
+  border-radius: 10px;
+  background-color: var(--primary-component-color);
+  color: var(--light-font-color);
+}
+
+.reset-container {
+  width: 140px;
+}
+
+#reset-button {
+  width: 100%;
+  background-color: var(--button-and-element-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: var(--light-font-color);
+}
+
+#reset-button > img {
+  margin: 10px 0;
+}
+
+.zone-indicator-on {
+  background-color: var(--secondary-component-color);
+}
+
+.power-button-on {
+  background-color: var(--button-and-element-color);
+  color: var(--dark-font-color);
+}
