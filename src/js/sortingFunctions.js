@@ -1,6 +1,6 @@
 import { details, inputSearch, condition, searchEntries } from "./htmlComponents.js"
 import { loadInitialRecords } from "./apiFunctions.js"
-import {}
+import {updateDisplayData} from './main.js'
 
 async function getDisplayData() {
   const displayData = await loadInitialRecords()

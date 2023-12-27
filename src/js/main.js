@@ -153,3 +153,7 @@ function searchHandler(inputFields) {
     sortingFunctions.sortHandler(searchFieldValues)
   }
 }
+
+export function updateDisplayData() {
+  
+}
