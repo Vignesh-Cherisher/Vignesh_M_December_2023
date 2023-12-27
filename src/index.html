@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit Card Management System</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main>
+    <div class="data-file-path-container">
+      <p class="data-file-path-text">Data File Path</p>
+      <div>
+        <div class="data-file-input"></div>
+        <i class="fa-regular fa-folder-open"><input type="file" name="data-path-browse-input" id="data-path-browse" class="data-path-browse-button"></i>
+      </div>
+    </div>
+    <div class="add-search-display-container">
+      <div class="add-search-container">
+        <div class="add-search-header">
+          <p class="header-elements active">Add/Update</p>
+          <p class="header-elements">Search</p>
+        </div>
+        <div class="add-update-container data-add-search-container active">
+          <fieldset id="add-update-form">
+            <label for="card-number">Card Number</label>
+            <input type="number" name="card-number-input" id="card-number" min="1" max="99999999" class="add-update-entries" placeholder="00000000" required>
+            <label for="name-input">Name</label>
+            <input type="text" name="name-input-field" id="name-input" class="add-update-entries" required>
+            <label for="expiry-date">Valid Up to</label>
+            <input type="month" name="expiry-input-field" id="expiry-date" class="add-update-entries" required>
+            <br>
+            <button type="submit" name="add-update-form" class="add-update-submit" id="add-update-button">Add/Update</button>
+          </fieldset>
+        </div>
+        <div class="search-container data-add-search-container">
+          <fieldset>
+            <label for="details">Details</label>
+            <select name="details-input" id="details" class="search-entries" required>
+              <option value="" selected disabled hidden>Category</option>
+              <option value="cardNumber">Card Number</option>
+              <option value="cardHolderFirstName">Card Holder First Name</option>
+              <option value="cardHolderLastName">Card Holder Last Name</option>
+              <option value="cardExpiry">Card Expiry</option>
+            </select>
+            <label for="condition">Condition</label>
+            <select name="condition-input" id="condition" class="search-entries" required>
+              <option value="" selected disabled hidden>Condition</option>
+            </select>
+            <label for="input-search">Input</label>
+            <input type="month" name="input-search-field" id="fromdate-input-search" class="search-entries" required>
+            <span class="input-search-within-date" hidden>To</span>
+             <input type="month" name="input-search-field-within" id="tilldate-input-search" class="input-search-within-date search-entries" required hidden>
+            <br>
+            <button type="submit" class="search-submit" id="search-button">Search</button>
+          </fieldset>
+        </div>
+      </div>
+      <div class="data-display-container">
+        <p class="data-display-text">Data</p>
+        <div class="data-display-grid">
+          <div class="data-display-header data-display-column">
+            <p class="display-header display-data">S.No.</p>
+            <p class="display-header display-data">Card Number</p>
+            <p class="display-header display-data">First Name</p>
+            <p class="display-header display-data">Last Name</p>
+            <p class="display-header display-data">Valid Upto</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="search-duration-container">
+      <div class="search-duration-field">
+        <p class="search-duration-text">Search Duration(sec)</p>
+        <div class="search-duration-display">00</div>
+      </div>
+    </div>
+  </main>
+  <script src="https://kit.fontawesome.com/a661c43ce1.js" crossorigin="anonymous"></script>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
