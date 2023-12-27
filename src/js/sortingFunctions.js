@@ -1,7 +1,6 @@
 import { details, inputSearch, condition, searchEntries } from "./htmlComponents.js"
 import { loadInitialRecords } from "./apiFunctions.js"
-const sortedArray = []
-const unSortedArray = []
+import {}
 
 async function getDisplayData() {
   const displayData = await loadInitialRecords()
@@ -12,21 +11,7 @@ async function getDisplayData() {
   return displayDataArray
 }
 
-function sortHandler(searchFieldValues) {
-  switch (searchFieldValues[0]) {
-    case 'cardNumber':
-      loadCardNumberData()
-      break
-    case 'cardHolderFirstName':
-      loadCardFirstNameData()
-      break
-    case 'cardHolderLastName':
-      loadCardLastNameData()
-      break
-    case 'cardExpiry':
-      loadCardExpiryData()
-      break
-  }
+export function sortHandler(searchFieldValues) {
   switch (searchFieldValues[1]) {
     case 'equals':
       filterOnValueEquals(searchFieldValues)
@@ -61,6 +46,10 @@ function sortHandler(searchFieldValues) {
   }
 }
 
-function filterOnValueEquals(inputFieldValue) {
-
+async function filterOnValueEquals(inputFieldValue) {
+  let detailValue = details.value
+  let displayDataArray = await getDisplayData()
+  console.log(displayDataArray)
+  displayDataArray = displayDataArray.filter((item) => item[detailValue] === inputFieldValue[2])
+  updateDisplayData(displayDataArray)
 }

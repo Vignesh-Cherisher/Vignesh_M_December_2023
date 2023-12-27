@@ -139,12 +139,12 @@ function searchHandler(inputFields) {
   const searchFieldValues = []
   let searchData = true
   inputFields.forEach((element, index) => {
-    if (index === 3 && htmlComponents.condition.value === 'within' && element.value === '') {
+    if (htmlComponents.condition.value === 'within' && element.value === '') {
       searchData = false
       window.alert(`Fill in ${element.id.split('-')[0]} field to Continue`)
     } else if (element.value !== '') {
       searchFieldValues.push(element.value)
-    } else {
+    } else if(index !== 3){
       searchData = false
       window.alert(`Enter a Value for the ${element.id.split('-')[0]} field`)
     }
