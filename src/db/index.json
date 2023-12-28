@@ -1,0 +1,15 @@
+{
+  "asdewr@asdf.df": {
+    "name": "asdf",
+    "userEmail": "asdewr@asdf.df",
+    "password": "fdsaf",
+    "accountType": "owner",
+    "department": "front-end"
+  },
+  "dsfbw@jiji.wf": {
+    "name": "sdwer",
+    "userEmail": "dsfbw@jiji.wf",
+    "password": "erherh",
+    "accountType": "owner"
+  }
+}

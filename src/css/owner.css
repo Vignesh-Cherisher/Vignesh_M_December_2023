@@ -1,0 +1,134 @@
+:root {
+  --primary-bg-color: #9EC8B9;
+  --dark-font-color: #092635;
+  --light-font-color: #ffffff;
+  --secondary-font-color: #bc0000;
+  --primary-component-color: #5C8374;
+  --secondary-component-color: #1B4242;
+  font-size: 18px;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  overscroll-behavior: none;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  font-family: Poppins, 'sans-serif';
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  background-color: var(--primary-bg-color);
+}
+
+.nav-bar{
+  background-color: var(--light-font-color);
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 1rem;
+}
+.website-title-container {
+  display: flex;
+  align-items: center;
+}
+
+.website-logo {
+  max-height: 3rem;
+  margin-right: 0.4rem;
+}
+
+.website-title {
+  color: var(--dark-font-color);
+  text-transform: uppercase;
+  width: 12rem;
+  font-weight: 700;
+}
+
+.user-data-container {
+  display: flex;
+  font-size: 0.8rem;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.user-info-container {
+  text-align: right;
+}
+
+.user-name {
+  color: var(--secondary-font-color);
+  text-transform: uppercase;
+}
+
+.user-account {
+  font-size: 0.7rem;
+  font-style: italic;
+}
+
+.profile-picture {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50px;
+  background: url("../../Assets/cherisher.png") no-repeat;
+  background-size: cover;
+  position: relative;
+  cursor: pointer;
+  border: solid 2px #000;
+}
+
+.profile-picture-overlay {
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  height: 3.5rem;
+  width: 3.4rem;
+  border-radius: 50px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.profile-picture-overlay input[type="file"] {
+  opacity: 0;
+  z-index: 2;
+  position: relative;
+  cursor: pointer;
+  height: 3.6rem;
+  width: 3.6rem;
+}
+
+.profile-picture-overlay > i {
+  border-radius: 0 0 50px 50px;
+  height: 1.4rem;
+  font-size: 1.2rem;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #5d5d5d90;
+}
+
+.profile-picture-overlay:hover {
+  opacity: 1;
+}
+
+.log-out-container {
+  text-align: center;
+}
+
+.fa-right-from-bracket {
+  cursor: pointer;
+  margin-top: 0.4rem;
+  font-size: 2.2rem;
+}
+
+.log-out-text {
+  cursor: pointer;
+  font-size: 0.5rem;
+}

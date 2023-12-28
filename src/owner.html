@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kanban Board Management</title>
+  <link rel="shortcut icon" href="../Assets/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="./css/owner.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main>
+    <div class="nav-bar">
+      <div class="website-title-container">
+        <img src="../Assets/favicon.png" alt="Website Logo" class="website-logo">
+        <p class="website-title">Kanban Board Management System</p>
+      </div>
+      <div class="user-data-container">
+        <div class="user-info-container">
+          <p class="user-name">User Name</p>
+          <p class="user-account">Account Type</p>
+        </div>
+          <div class="profile-picture">
+            <div class="profile-picture-overlay">
+              <input type="file" name="profile-picture-input" id="profile-picture-inp">
+              <i class="fa-solid fa-camera"></i>
+            </div>
+          </div>
+        <div class="log-out-container">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <p class="log-out-text">Logout</p>
+        </div>
+      </div>
+    </div>
+    <div class="application-container">
+      <div class="analytics-filter-container">
+        <div class="analytics-container">
+          <p class="analytics-text">TOTAL TASKS</p>
+          <div class="analytics-display" id="total-tasks-display">203</div>
+        </div>
+        <div class="analytics-container">
+          <p class="analytics-text">IN PROGRESS</p>
+          <div class="analytics-display" id="in-progress-display">150</div>
+        </div>
+        <div class="analytics-container">
+          <p class="analytics-text">DONE</p>
+          <div class="analytics-display" id="tasks-done-display">53</div>
+        </div>
+        <div class="active-users-container">
+          <select name="active-users-input" id="active-users">
+            <option value="" selected hidden disabled>Active Users</option>
+          </select>
+        </div>
+        <div class="filter-container">
+          <i class="fa-solid fa-filter"></i>
+          <select name="filter-input" id="filter">
+            <option value="" selected hidden disabled>Filter</option>
+          </select>
+        </div>
+      </div>
+      <div class="kanban-container">
+        <div class="column" data-status="To Do">
+          <h4 class="column-header">To Do</h4>
+          <ul class="task-list" id="todo-list"></ul>
+          <button class="kanban-button" id="add-todo">+ Add Tasks</button>
+        </div>
+        <div class="column is-completed" data-status="In Progress">
+          <h4 class="column-header">In Progress</h4>
+          <ul class="task-list" id="progress-list"></ul>
+          <button class="kanban-button" id="add-inprogress">+ Add Tasks</button>
+        </div>
+        <div class="column" data-status="Review">
+          <h4 class="column-header">Review</h4>
+          <ul class="task-list" id="review-list"></ul>
+          <button class="kanban-button" id="add-review">+ Add Tasks</button>
+        </div>
+        <div class="column" data-status="Done">
+          <h4 class="column-header">Done</h4>
+          <ul class="task-list" id="done-list"></ul>
+          <button class="kanban-button" id="add-done">+ Add Tasks</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script type="module" src="./js/owner.js"></script>
+  <script src="https://kit.fontawesome.com/a661c43ce1.js" crossorigin="anonymous"></script>
+</body>
+</html>
