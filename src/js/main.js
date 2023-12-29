@@ -27,15 +27,18 @@ htmlComponents.signUpLink.addEventListener('click', () => {
 
 htmlComponents.signInButton.addEventListener('click', async () => {
   const serverResponse = await loginFunctions.signInHandler(htmlComponents.signInInputs)
-  window.localStorage.setItem('userEmail', serverResponse[0].userEmail)
+  window.localStorage.clear()
+  window.localStorage.setItem('userName', serverResponse[0].name)
   window.localStorage.setItem('userAccountType', serverResponse[0].accountType)
   handleServerResponse(serverResponse[0].accountType)
 })
 
 htmlComponents.signUpButton.addEventListener('click', async () => {
   const serverResponse = await loginFunctions.signUpHandler(htmlComponents.signUpInputs)
-  handleServerResponse(serverResponse)
-  // localStorage.setItem(serverResponse)
+  window.localStorage.clear()
+  window.localStorage.setItem('userName', serverResponse[0].name)
+  window.localStorage.setItem('userAccountType', serverResponse[0].accountType)
+  handleServerResponse(serverResponse[0].accountType)
 })
 
 /**

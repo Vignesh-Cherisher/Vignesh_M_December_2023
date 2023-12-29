@@ -59,3 +59,65 @@ export async function postSignUpData (inputFieldValues) {
 export function redirectToOwnerPage () {
   window.location.assign('http://localhost:5002/owner')
 }
+
+/**
+ *
+ */
+export function redirectToLoginPage () {
+  window.location.assign('http://localhost:5002/')
+}
+
+/**
+ *
+ * @param formEntries
+ */
+export async function checkNewTaskData (formEntries, taskId, status) {
+  const taskFormValues = [taskId, status]
+  let postData = true
+  formEntries.forEach((element, index) => {
+    if (element.value === '' && (index === 0 || index === 4)) {
+      postData = false
+      window.alert(`Fill in ${element.id.split('-')[0]} ${element.id.split('-')[1]} Field to Continue`)
+    } else {
+      taskFormValues.push(element.value)
+    }
+  })
+  let serverResponse
+  if (postData !== false) {
+    serverResponse = await postNewTaskData(taskFormValues)
+    return serverResponse
+  } else {
+    return false
+  }
+}
+
+/**
+ *
+ * @param inputFieldValues
+ */
+export async function postNewTaskData (inputFieldValues) {
+  const myHeaders = new Headers()
+  myHeaders.append('Content-Type', 'application/json')
+
+  const fetchBody = {
+    taskId: inputFieldValues[0],
+    taskStatus: inputFieldValues[1],
+    taskTitle: inputFieldValues[2],
+    assigneeName: inputFieldValues[3],
+    reporterName: inputFieldValues[4],
+    priorityLevel: inputFieldValues[5],
+    dueData: inputFieldValues[6]
+  }
+
+  const requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: JSON.stringify(fetchBody),
+    redirect: 'follow'
+  }
+
+  const fetchData = await fetch('/add-task', requestOptions)
+    .then((response) => { return response.json() })
+    .catch(error => console.log('error', error))
+  return (fetchData)
+}

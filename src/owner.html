@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kanban Board Management</title>
   <link rel="shortcut icon" href="../Assets/favicon.png" type="image/x-icon">
-  <link rel="stylesheet" href="./css/owner.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/owner.css">
 </head>
 <body>
   <main>
@@ -36,28 +36,32 @@
     </div>
     <div class="application-container">
       <div class="analytics-filter-container">
-        <div class="analytics-container">
-          <p class="analytics-text">TOTAL TASKS</p>
-          <div class="analytics-display" id="total-tasks-display">203</div>
+        <div class="analytics-group-container">
+          <div class="analytics-container">
+            <p class="analytics-text">TOTAL TASKS</p>
+            <div class="analytics-display" id="total-tasks-display">203</div>
+          </div>
+          <div class="analytics-container">
+            <p class="analytics-text">IN PROGRESS</p>
+            <div class="analytics-display" id="in-progress-display">150</div>
+          </div>
+          <div class="analytics-container">
+            <p class="analytics-text">DONE</p>
+            <div class="analytics-display" id="tasks-done-display">53</div>
+          </div>
         </div>
-        <div class="analytics-container">
-          <p class="analytics-text">IN PROGRESS</p>
-          <div class="analytics-display" id="in-progress-display">150</div>
-        </div>
-        <div class="analytics-container">
-          <p class="analytics-text">DONE</p>
-          <div class="analytics-display" id="tasks-done-display">53</div>
-        </div>
-        <div class="active-users-container">
-          <select name="active-users-input" id="active-users">
-            <option value="" selected hidden disabled>Active Users</option>
-          </select>
-        </div>
-        <div class="filter-container">
-          <i class="fa-solid fa-filter"></i>
-          <select name="filter-input" id="filter">
-            <option value="" selected hidden disabled>Filter</option>
-          </select>
+        <div class="filter-users-container">
+          <div class="active-users-container button-background">
+            <select name="active-users-input" id="active-users" class="filter-active-users-field">
+              <option value="" selected hidden disabled>Active Users</option>
+            </select>
+          </div>
+          <div class="filter-container button-background">
+            <i class="fa-solid fa-filter"></i>
+            <select name="filter-input" id="filter" class="filter-active-users-field">
+              <option value="" selected hidden disabled>Filter</option>
+            </select>
+          </div>
         </div>
       </div>
       <div class="kanban-container">
@@ -73,7 +77,32 @@
         </div>
         <div class="column" data-status="Review">
           <h4 class="column-header">Review</h4>
-          <ul class="task-list" id="review-list"></ul>
+          <ul class="task-list" id="review-list">
+            <li class="task-item" id="review-item">
+              <p class="task-item-text">
+                <span class="task-item-id"># Task ID</span> -
+                <span class="task-title">Task Title</span>
+              </p>
+              <div class="task-item-profile-container">
+                <div class="assignee-container task-user-container">
+                  <img src="../Assets/cherisher.png" alt="Assignee-profile" class="task-profile-piture">
+                  <div class="task-user-info-container">
+                    <p class="task-user-role">Assignee</p>
+                    <p class="task-user-name">Name</p>
+                  </div>
+                </div>
+                <div class="task-item-priority">HIGH</div>
+                <div class="reporter-container task-user-container">
+                  <img src="../Assets/cherisher.png" alt="reporter-profile" class="task-profile-piture">
+                  <div class="task-user-info-container">
+                    <p class="task-user-role">Reporter</p>
+                    <p class="task-user-name">Name</p>
+                  </div>
+                </div>
+                <div class="task-item-date">21/08/2023</div>
+              </div>
+            </li>
+          </ul>
           <button class="kanban-button" id="add-review">+ Add Tasks</button>
         </div>
         <div class="column" data-status="Done">
@@ -84,6 +113,36 @@
       </div>
     </div>
   </main>
+  <div class="add-update-tasks-overlay hide-overlay">
+    <div class="add-update-tasks-container">
+      <h1 class="form-title">Add Tasks Form</h1>
+      <fieldset class="add-update-tasks-form" id="addUpdateTasksForm">
+        <label for="task-title-input">Task Title: </label>
+        <input type="text" class="task-form-entries" id="task-title-input" name="task-title" placeholder="Task Title">
+        <label for="task-assignee-input">Assignee Name: </label>
+        <select name="task-assignee" class="task-form-entries" id="task-assignee-input">
+          <option value="" selected disabled hidden>Select A Task Assignee</option>
+        </select>
+        <label for="task-reporter-input">Reporter Name: </label>
+        <select name="task-reporter" class="task-form-entries" id="task-reporter-input">
+          <option value="" selected disabled hidden>Select A Task Reporter</option>
+        </select>
+        <label for="task-priority-input">Task Priority: </label>
+        <select name="task-priority" class="task-form-entries" id="task-priority-input">
+          <option value="low" selected>Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <label for="task-due-date-input">Due Date: </label>
+        <input type="date" id="task-due-date-input" class="task-form-entries" placeholder="Click to pick a date...">
+      </fieldset>
+      <div class="form-controller-options">
+        <button class="add-update-tasks-button" id="add-task-button">Add</button>
+        <button class="add-update-tasks-button hide-overlay" id="edit-task-button">Save</button>
+        <button class="add-update-tasks-button" id="cancel-add-update-task">Cancel</button>
+      </div>
+    </div>
+  </div>
   <script type="module" src="./js/owner.js"></script>
   <script src="https://kit.fontawesome.com/a661c43ce1.js" crossorigin="anonymous"></script>
 </body>

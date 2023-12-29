@@ -1,15 +1,27 @@
 {
-  "asdewr@asdf.df": {
-    "name": "asdf",
-    "userEmail": "asdewr@asdf.df",
-    "password": "fdsaf",
-    "accountType": "owner",
-    "department": "front-end"
+  "users": {
+    "bwrbe@brbe.brb": {
+      "name": "brwbrwebr",
+      "userEmail": "bwrbe@brbe.brb",
+      "password": "nrebw",
+      "accountType": "owner"
+    },
+    "asdewr@asdf.df": {
+      "name": "Vignesh Shivaram Muruganandan",
+      "userEmail": "asdewr@asdf.df",
+      "password": "fdsaf",
+      "accountType": "owner"
+    }
   },
-  "dsfbw@jiji.wf": {
-    "name": "sdwer",
-    "userEmail": "dsfbw@jiji.wf",
-    "password": "erherh",
-    "accountType": "owner"
+  "tasks": {
+    "001": {
+      "taskId": "001",
+      "taskStatus": "1",
+      "taskTitle": "gwe",
+      "assigneeName": "",
+      "reporterName": "",
+      "priorityLevel": "low",
+      "dueData": "2025-12-31"
+    }
   }
 }

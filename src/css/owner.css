@@ -65,11 +65,13 @@ main {
 .user-name {
   color: var(--secondary-font-color);
   text-transform: uppercase;
+  font-weight: 700;
 }
 
 .user-account {
   font-size: 0.7rem;
   font-style: italic;
+  text-transform: capitalize;
 }
 
 .profile-picture {
@@ -131,4 +133,276 @@ main {
 .log-out-text {
   cursor: pointer;
   font-size: 0.5rem;
+}
+
+.application-container {
+  height: calc(100% - 5rem);
+  width: 100%;
+  display: grid;
+  grid-template-rows: 6rem auto;
+}
+
+.analytics-filter-container {
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 1rem;
+  align-items: center;
+}
+
+.analytics-group-container {
+  display: flex;
+  justify-content: space-between;
+  width: clamp(300px, 30%, 450px);
+}
+
+.analytics-text {
+  color: var(--dark-font-color);
+  margin-left: 0.2rem;
+  font-size: clamp(0.7rem, calc(0.5rem + 0.4vw), 1rem);
+  font-weight: 700;
+  font-family: 'Inika', serif;
+}
+
+.analytics-display {
+  font-family: Poppins;
+  width: clamp(5rem, calc(5rem + 0.8vw), 8rem);
+  height: clamp(1.7rem, calc(1.7rem + 0.5vh), 2.3rem);
+  background-color: var(--light-font-color);
+  border-radius: 5px;
+  text-align: center;
+  line-height: clamp(1.7rem, calc(1.7rem + 0.5vh), 2.3rem);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.2rem;
+}
+
+.filter-users-container {
+  display: flex;
+  width: clamp(14rem, calc(14rem + 1vw), 15rem);
+  justify-content: space-between;
+  padding-top: 0.9rem;
+}
+
+.button-background {
+  height: 1.8rem;
+  background-color: var(--light-font-color);
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.button-background:hover {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+
+.filter-active-users-field {
+  padding: 0.3rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+}
+
+.kanban-container {
+  height: calc(100%);
+  display: flex;
+  justify-content: space-between;
+  overflow: scroll;
+  padding-inline: 1rem;
+  column-gap: 0.5rem;
+}
+
+::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+}
+
+.column {
+  background-color: var(--primary-component-color);
+  /* column in kanban board */
+  width: 22%;
+  min-width: 15rem;
+  max-width: 20rem;
+  margin-bottom: 1.5rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 2.4px 2.4px 5px;
+  border-radius: 5px;
+  float: left;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all .3s ease-in-out;
+}
+
+.column-header {
+  font-size: 1.3rem;
+  width: 100%;
+  background-color: var(--light-font-color);
+  text-align: center;
+  border-radius: 5px 5px 0 0;
+  border: solid 2px var(--dark-font-color);
+}
+
+.task-list {
+  height: 100%;
+  position: relative;
+  list-style-type: none;
+  width: 100%;
+  overflow-y: auto;
+  display: grid;
+  grid-auto-rows: 8rem;
+  gap: .75rem;
+  align-items: start;
+  padding: .75rem;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  overflow-y: scroll;
+}
+
+.kanban-button {
+  text-align: left;
+  font-size: 1rem;
+  background-color: var(--light-font-color);
+  border: none;
+  border-radius: 0 0 5px 5px;
+  padding: 5px;
+}
+
+.kanban-button:hover {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+  border: solid 2px var(--dark-font-color);
+}
+
+.task-item {
+  height: 8rem;
+  border-radius: 10px;
+  background-color: var(--secondary-component-color);
+  color: var(--light-font-color);
+  padding: 5px 5px 5px 10px;
+  font-size: 0.7rem;
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+}
+
+.task-item-profile-container {
+  display: grid;
+  grid-template: 1fr 1fr/ 2fr 1fr;
+      /* horizontal alignment of grid tracks */
+  align-items: center;
+  justify-items: center;
+}
+
+.task-user-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.task-profile-piture {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  border: solid 2px var(--dark-font-color);
+  margin-right: 5px;
+}
+
+.task-item-text {
+  font-size: 1rem;
+}
+
+.task-user-role {
+  font-weight: 700;
+}
+
+.task-user-name {
+  font-size: 0.6rem;
+  font-weight: 200;
+}
+
+.task-item-priority {
+  width: 50px;
+  background-color: #FF8F8F;
+  color: var(--secondary-font-color);
+  font-weight: 700;
+  text-align: center;
+}
+
+.task-item-date {
+  font-weight: 200;
+}
+
+.add-update-tasks-overlay {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: #00000079;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-update-tasks-container {
+  height: 500px;
+  width: 600px;
+  background-color: var(--primary-component-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 2rem;
+  color: var(--dark-font-color);
+}
+
+.form-title {
+  margin-bottom: 1.5rem;
+}
+
+.add-update-tasks-form {
+  width: 100%;
+  height: calc(100% - 7rem);
+  display: grid;
+  gap: 1rem;
+  grid-template: repeat(4, 1fr)/ 1fr 2fr;
+  font-size: 0.9rem;
+  position: relative;
+  padding: 0.4rem;
+}
+
+.add-update-tasks-form > label {
+  position: relative;
+  top: 8px;
+  text-align: right;
+}
+
+.add-update-tasks-form > input, .add-update-tasks-form > select {
+  height: 2.2rem;
+}
+
+.form-controller-options {
+  margin-top: 0.5rem;
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: right;
+  gap: 0.5rem;
+}
+
+.add-update-tasks-button {
+  width: 5rem;
+  font-size: 1rem;
+  padding: 0.3rem;
+  background-color: var(--secondary-component-color);
+  color: var(--light-font-color);
+}
+
+.add-update-tasks-button:hover {
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.hide-overlay {
+  display: none;
 }
