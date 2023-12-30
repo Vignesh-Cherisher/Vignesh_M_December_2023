@@ -1,21 +1,28 @@
 import * as htmlComponents from './htmlComponents.js'
 import * as apiFunctions from './apiFunctions.js'
+import * as dragFunctions from './dragFunctions.js'
 
-htmlComponents.userName.innerHTML = window.localStorage.getItem('userName')
-htmlComponents.userAccount.innerHTML = window.localStorage.getItem('userAccountType');
-
-(() => {
+(async () => {
+  if (window.localStorage.getItem('userName' === null)) {
+    apiFunctions.redirectToErrorPage()
+  }
+  await loadBoardData()
+  dragFunctions.drag()
   displayAnalyticsData()
 })()
 
+htmlComponents.userName.innerHTML = window.localStorage.getItem('userName')
+htmlComponents.userAccount.innerHTML = window.localStorage.getItem('userAccountType')
+
 htmlComponents.logOutContainer.addEventListener('click', () => {
+  window.localStorage.clear()
   apiFunctions.redirectToLoginPage()
 })
 
 /**
  *
  */
-function displayAnalyticsData () {
+export function displayAnalyticsData () {
   showDoneTasks()
   showTotalTasks()
   showInProgress()
@@ -47,35 +54,48 @@ function showDoneTasks () {
 
 /**
  *
+ */
+async function loadBoardData () {
+  const initialBoardData = await apiFunctions.getBoardData()
+  if (Object.keys(initialBoardData).length === 0) {
+    return
+  }
+  for (const i in initialBoardData) {
+    appendTaskToBoard(initialBoardData[i])
+  }
+}
+
+/**
+ *
  * @param parentContainer
  * @param taskItemValues
  */
 function appendTaskToBoard (taskItemValues) {
-  const htmlMarkup = `            <li class="task-item" id="review-item">
+  const htmlMarkup = `            <li class="task-item" draggable="true">
               <p class="task-item-text">
-                <span class="task-item-id"># ${taskItemValues[0].taskId}</span> -
-                <span class="task-title">${taskItemValues[0].taskTitle}</span>
+                <span class="task-item-id"># ${taskItemValues.taskId}</span> -
+                <span class="task-title">${taskItemValues.taskTitle}</span>
               </p>
               <div class="task-item-profile-container">
                 <div class="assignee-container task-user-container">
-                  <img src="../Assets/cherisher.png" alt="Assignee-profile" class="task-profile-piture">
+                  <img src="../Assets/cherisher.png" alt="Assignee-profile" class="task-profile-piture" draggable="false">
                   <div class="task-user-info-container">
                     <p class="task-user-role">Assignee</p>
-                    <p class="task-user-name">${taskItemValues[0].assigneeName !== '' ? taskItemValues[0].assigneeName : 'Name'}</p>
+                    <p class="task-user-name">${taskItemValues.assigneeName !== '' ? taskItemValues.assigneeName : 'Name'}</p>
                   </div>
                 </div>
-                <div class="task-item-priority">${taskItemValues[0].priorityLevel}</div>
+                <div class="task-item-priority ${taskItemValues.priorityLevel}">${taskItemValues.priorityLevel}</div>
                 <div class="reporter-container task-user-container">
-                  <img src="../Assets/cherisher.png" alt="reporter-profile" class="task-profile-piture">
+                  <img src="../Assets/cherisher.png" alt="reporter-profile" class="task-profile-piture" draggable="false">
                   <div class="task-user-info-container">
                     <p class="task-user-role">Reporter</p>
-                    <p class="task-user-name">${taskItemValues[0].reporterName !== '' ? taskItemValues[0].reporterName : 'Name'}</p>
+                    <p class="task-user-name">${taskItemValues.reporterName !== '' ? taskItemValues.reporterName : 'Name'}</p>
                   </div>
                 </div>
-                <div class="task-item-date">${taskItemValues[0].dueData}</div>
+                <div class="task-item-date">${taskItemValues.dueData}</div>
               </div>
             </li>`
-  const index = parseInt(taskItemValues[0].taskStatus)
+  const index = parseInt(taskItemValues.taskStatus)
   const parentContainer = htmlComponents.taskLists[index]
   parentContainer.insertAdjacentHTML('beforeend', htmlMarkup)
 }
@@ -95,7 +115,7 @@ htmlComponents.btncancelAddUpdateTask.addEventListener('click', () => {
 
 htmlComponents.btnsAddTask.addEventListener('click', async () => {
   const taskItemValues = await apiFunctions.checkNewTaskData(htmlComponents.taskFormEntries, createTaskId(), window.localStorage.getItem('lastTaskStatus'))
-  appendTaskToBoard(taskItemValues)
+  appendTaskToBoard(taskItemValues[0])
   htmlComponents.addUpdateTasksOverlay.classList.add('hide-overlay')
   displayAnalyticsData()
 })
@@ -105,7 +125,7 @@ htmlComponents.btnsAddTask.addEventListener('click', async () => {
  */
 function createTaskId () {
   let newTaskId = htmlComponents.getTaskIds().length
-  newTaskId = padZeroes(newTaskId)
+  newTaskId = padZeroes(newTaskId + 1)
   return newTaskId
 }
 

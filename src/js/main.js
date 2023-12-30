@@ -3,6 +3,15 @@ import * as animationFunctions from './animationFunctions.js'
 import * as apiFunctions from './apiFunctions.js'
 import * as loginFunctions from './loginFunctions.js'
 
+window.onbeforeunload = function () {
+  console.log(window.localStorage)
+  if (window.localStorage.getItem('userName') === null) {
+    console.log('true')
+    window.history.pushState(null, null, 'http://localhost:5002/notFound')
+    window.history.go(1)
+  }
+}
+
 htmlComponents.signInLink.addEventListener('click', () => {
   htmlComponents.headerElements[0].click()
 })

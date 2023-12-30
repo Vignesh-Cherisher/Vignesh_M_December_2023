@@ -322,11 +322,12 @@ main {
 }
 
 .task-item-priority {
-  width: 50px;
+  padding: 5px 10px;
   background-color: #FF8F8F;
   color: var(--secondary-font-color);
   font-weight: 700;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .task-item-date {
@@ -405,4 +406,19 @@ main {
 
 .hide-overlay {
   display: none;
+}
+
+.high {
+  background-color: #FF8F8F;
+  color: var(--secondary-font-color);
+}
+
+.medium {
+  background-color: #d4d66d;
+  color: #787600;
+}
+
+.low {
+  background-color: #9ACD32;
+  color: #2E7D32;
 }

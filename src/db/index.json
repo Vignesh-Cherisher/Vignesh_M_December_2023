@@ -16,12 +16,66 @@
   "tasks": {
     "001": {
       "taskId": "001",
-      "taskStatus": "1",
+      "taskStatus": "0",
       "taskTitle": "gwe",
       "assigneeName": "",
       "reporterName": "",
       "priorityLevel": "low",
       "dueData": "2025-12-31"
+    },
+    "002": {
+      "taskId": "002",
+      "taskStatus": "1",
+      "taskTitle": "mimin",
+      "assigneeName": "",
+      "reporterName": "",
+      "priorityLevel": "medium",
+      "dueData": "2025-01-11"
+    },
+    "003": {
+      "taskId": "003",
+      "taskStatus": "3",
+      "taskTitle": "finished",
+      "assigneeName": "",
+      "reporterName": "",
+      "priorityLevel": "high",
+      "dueData": "2023-04-03"
+    },
+    "004": {
+      "taskId": "004",
+      "taskStatus": "1",
+      "taskTitle": "Jhee Boom Bhaa",
+      "assigneeName": "",
+      "reporterName": "",
+      "priorityLevel": "medium",
+      "dueData": "2025-12-25"
+    },
+    "005": {
+      "taskId": "005",
+      "taskStatus": "1",
+      "taskTitle": "crazy",
+      "assigneeName": "",
+      "reporterName": "",
+      "priorityLevel": "low",
+      "dueData": "2025-08-06"
+    },
+    "006": {
+      "taskId": "006",
+      "taskStatus": "2",
+      "taskTitle": "asdf",
+      "assigneeName": "",
+      "reporterName": "",
+      "priorityLevel": "low",
+      "dueData": "5202-02-12"
+    },
+    "007": {
+      "taskId": "007",
+      "taskStatus": "1",
+      "taskTitle": "asdfg",
+      "assigneeName": "",
+      "reporterName": "",
+      "priorityLevel": "low",
+      "dueData": "2025-11-25"
     }
   }
 }

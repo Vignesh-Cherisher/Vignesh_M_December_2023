@@ -63,13 +63,22 @@ export function redirectToOwnerPage () {
 /**
  *
  */
+export function redirectToErrorPage () {
+  window.location.replace('http://localhost:5002/notFound')
+}
+
+/**
+ *
+ */
 export function redirectToLoginPage () {
-  window.location.assign('http://localhost:5002/')
+  window.location.replace('http://localhost:5002/')
 }
 
 /**
  *
  * @param formEntries
+ * @param taskId
+ * @param status
  */
 export async function checkNewTaskData (formEntries, taskId, status) {
   const taskFormValues = [taskId, status]
@@ -117,6 +126,42 @@ export async function postNewTaskData (inputFieldValues) {
   }
 
   const fetchData = await fetch('/add-task', requestOptions)
+    .then((response) => { return response.json() })
+    .catch(error => console.log('error', error))
+  return (fetchData)
+}
+
+/**
+ *
+ */
+export async function getBoardData () {
+  const boardDataRequest = await fetch('/get-board-data')
+    .then(request => request.json())
+  return boardDataRequest
+}
+
+/**
+ *
+ * @param itemId
+ * @param itemStatus
+ */
+export async function postStatusIndex (itemId, itemStatus) {
+  const myHeaders = new Headers()
+  myHeaders.append('Content-Type', 'application/json')
+
+  const fetchBody = {
+    taskId: itemId,
+    taskStatus: itemStatus
+  }
+
+  const requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: JSON.stringify(fetchBody),
+    redirect: 'follow'
+  }
+
+  const fetchData = await fetch('/update-task-status', requestOptions)
     .then((response) => { return response.json() })
     .catch(error => console.log('error', error))
   return (fetchData)
